@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { QuestionBase } from './models/QuestionBase';
+import { Observable } from 'rxjs';
+import { QuestionsService } from './questions.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'form-app';
+
+  questions$: Observable<QuestionBase<any>[]>;
+  constructor(service: QuestionsService) {
+    this.questions$ = service.getQuestions();
+  }
 }
